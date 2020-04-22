@@ -22,6 +22,8 @@ import com.google.firebase.auth.AuthResult;
 import com.google.firebase.auth.FirebaseAuth;
 import com.google.firebase.auth.PhoneAuthCredential;
 import com.google.firebase.auth.PhoneAuthProvider;
+import com.google.firebase.database.DatabaseReference;
+import com.google.firebase.database.FirebaseDatabase;
 
 import java.util.concurrent.TimeUnit;
 
@@ -33,6 +35,13 @@ public class VerifyPhoneActivity extends AppCompatActivity {
     private ProgressBar progressBar;
     private TextInputEditText editText;
     private  AppCompatButton buttonSignIn;
+
+    //Database pushing user's phone number
+     private FirebaseDatabase mFirebaseDatabase;
+     private DatabaseReference mDatabseReference;
+
+     //phoneNumber
+     private String phoneNumber;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -47,11 +56,16 @@ public class VerifyPhoneActivity extends AppCompatActivity {
 
         mAuth = FirebaseAuth.getInstance();
 
+        //databse
+        mFirebaseDatabase=FirebaseDatabase.getInstance();
+        mDatabseReference=mFirebaseDatabase.getReference("users");
+
+        //progressbar
         progressBar = findViewById(R.id.progressbar);
         editText = findViewById(R.id.editTextCode);
         buttonSignIn = findViewById(R.id.buttonSignIn);
 
-        String phoneNumber = getIntent().getStringExtra("phoneNumber");
+         phoneNumber = getIntent().getStringExtra("phoneNumber");
         sendVerificationCode(phoneNumber);
 
         // save phone number
@@ -90,6 +104,12 @@ public class VerifyPhoneActivity extends AppCompatActivity {
                     @Override
                     public void onComplete(@NonNull Task<AuthResult> task) {
                         if (task.isSuccessful()) {
+
+                            String userId=task.getResult().getUser().getUid();
+
+                            Users users=new Users("","",phoneNumber);
+
+                            mDatabseReference.child(userId).setValue(users);
 
                             Intent intent = new Intent(VerifyPhoneActivity.this, ProfileActivity.class);
                             intent.setFlags(Intent.FLAG_ACTIVITY_NEW_TASK | Intent.FLAG_ACTIVITY_CLEAR_TASK);

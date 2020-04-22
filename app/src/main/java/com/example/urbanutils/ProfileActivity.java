@@ -53,7 +53,7 @@ public class ProfileActivity extends AppCompatActivity implements View.OnClickLi
         switch (v.getId()){
             case R.id.profile_id:
                 Toast.makeText(this, "Profile button is clicked", Toast.LENGTH_SHORT).show();
-                Intent intent=new Intent(ProfileActivity.this,EditProfileActivity.class);
+                Intent intent=new Intent(ProfileActivity.this, MyProfileActivity.class);
                 startActivity(intent);
                 break;
         }
