@@ -18,7 +18,8 @@ public class ProfileActivity extends AppCompatActivity implements View.OnClickLi
 
     private String phoneNumber;
     private TextView mobileNumber;
-    private  TextView profileTextview;
+    private  TextView profileTextview,registerProviderTextview;
+
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -46,6 +47,9 @@ public class ProfileActivity extends AppCompatActivity implements View.OnClickLi
 
         profileTextview=findViewById(R.id.profile_id);
         profileTextview.setOnClickListener(this);
+
+        registerProviderTextview=findViewById(R.id.register_priveder_id);
+        registerProviderTextview.setOnClickListener(this);
     }
 
     @Override
@@ -53,8 +57,13 @@ public class ProfileActivity extends AppCompatActivity implements View.OnClickLi
         switch (v.getId()){
             case R.id.profile_id:
                 Toast.makeText(this, "Profile button is clicked", Toast.LENGTH_SHORT).show();
-                Intent intent=new Intent(ProfileActivity.this, MyProfileActivity.class);
-                startActivity(intent);
+                Intent intent1=new Intent(ProfileActivity.this, MyProfileActivity.class);
+                startActivity(intent1);
+                break;
+            case R.id.register_priveder_id:
+                Toast.makeText(this, "register provider activit is called", Toast.LENGTH_SHORT).show();
+                Intent intent6=new Intent(ProfileActivity.this,RegisterProviderActivity.class);
+                startActivity(intent6);
                 break;
         }
     }

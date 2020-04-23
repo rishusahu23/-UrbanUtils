@@ -3,7 +3,11 @@ package com.example.urbanutils;
 import androidx.annotation.NonNull;
 import androidx.appcompat.app.AppCompatActivity;
 
+import android.content.Intent;
 import android.os.Bundle;
+import android.view.View;
+import android.widget.Button;
+import android.widget.ImageView;
 import android.widget.TextView;
 
 import com.google.firebase.auth.FirebaseAuth;
@@ -16,7 +20,7 @@ import com.google.firebase.database.ValueEventListener;
 public class MyProfileActivity extends AppCompatActivity {
 
     private TextView nameTextview,emailTextview,phoneTextview;
-
+    private ImageView editButton;
     //DATABASE
 
     private FirebaseDatabase mFirebaseDatabase;
@@ -35,6 +39,16 @@ public class MyProfileActivity extends AppCompatActivity {
         mDatabaseReference=mFirebaseDatabase.getReference("users");
 
         fetchData();
+
+        editButton= findViewById(R.id.edit_profile_id);
+        editButton.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                Intent intent=new Intent(MyProfileActivity.this,ProfileEditActivity.class);
+                startActivity(intent);
+            }
+        });
+
 
 
 

@@ -186,10 +186,21 @@
             >
 
             <ImageView
-                android:layout_width="100dp"
+                android:layout_width="75dp"
                 android:layout_height="75dp"
                 android:layout_gravity="center"
-                android:src="@drawable/user"/>
+
+                android:src="@drawable/register_img"/>
+
+            <TextView
+                android:layout_width="match_parent"
+                android:layout_height="match_parent"
+                android:text="register"
+                android:layout_gravity="bottom"
+
+                android:textSize="18dp"
+                android:id="@+id/register_priveder_id"
+                android:gravity="bottom|center"/>
 
         </androidx.cardview.widget.CardView>
 

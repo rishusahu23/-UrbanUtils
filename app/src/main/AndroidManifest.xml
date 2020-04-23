@@ -9,7 +9,9 @@
         android:roundIcon="@mipmap/ic_launcher_round"
         android:supportsRtl="true"
         android:theme="@style/AppTheme">
-        <activity android:name=".MyProfileActivity"></activity>
+        <activity android:name=".RegisterProviderActivity"></activity>
+        <activity android:name=".ProfileEditActivity" />
+        <activity android:name=".MyProfileActivity" />
         <activity android:name=".ProfileActivity" />
         <activity android:name=".VerifyPhoneActivity" />
         <activity android:name=".MainActivity">
